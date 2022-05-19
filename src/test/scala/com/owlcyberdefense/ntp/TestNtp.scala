@@ -11,7 +11,7 @@ import org.apache.daffodil.tdml.Runner
 //
 // This test driver file is using a style that works from
 // Daffodil version 3.4.0 to 4.0.0+
-// 
+//
 
 object TestNtp {
   lazy val runner = Runner("/com/owlcyberdefense/ntp/", "TestNtp.tdml")
@@ -31,4 +31,6 @@ class TestNtp {
   @Test def test_data_0(): Unit = { runner.runOneTest("test_data_0") }
 
 
+  @Test def test_ntp_li_01(): Unit = { runner.runOneTest("test_ntp_li_01") }
+  @Test def test_ntp_li_02(): Unit = { runner.runOneTest("test_ntp_li_02") }
 }

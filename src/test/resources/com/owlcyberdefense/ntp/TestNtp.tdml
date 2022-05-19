@@ -3,12 +3,45 @@
 Copyright (c) 2012-2026 Owl Cyber Defense. All rights reserved.
 Please see the accompanying COPYRIGHT.txt file for terms of use.
 -->
-<testSuite suiteName="Ntp" description="Ntp tests"
+<testSuite
+  suiteName="Ntp" description="Ntp tests"
   xmlns:tdml="http://www.ibm.com/xmlns/dfdl/testData"
   xmlns="http://www.ibm.com/xmlns/dfdl/testData"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/"
+  xmlns:ntp="urn:owlcyberdefense.com:schema:dfdl:ntp:ntp"
+  xmlns:ex="http://example.com"
   defaultRoundTrip="onePass">
+
+  <defineSchema name="enum" useDefaultNamespace="false" elementFormDefault="unqualified">
+    <xs:import namespace="urn:owlcyberdefense.com:schema:dfdl:ntp:ntp"
+               schemaLocation="com/owlcyberdefense/ntp/xsd/ntp-type.dfdl.xsd"/>
+    <dfdl:format ref="ntp:baseFormat" />
+    <xs:element name="testLI" type="ntp:leapIndicatorEnum"/>
+  </defineSchema>
+
+  <parserTestCase name="test_ntp_li_01" root="testLI" model="enum">
+    <document>
+      <documentPart type="bits">10</documentPart>
+    </document>
+    <infoset>
+      <dfdlInfoset>
+        <ex:testLI>LAST_59</ex:testLI>
+      </dfdlInfoset>
+    </infoset>
+  </parserTestCase>
+
+  <parserTestCase name="test_ntp_li_02" root="testLI" model="enum" validation="on">
+    <document>
+      <documentPart type="bits">11</documentPart>
+    </document>
+    <infoset>
+      <dfdlInfoset>
+        <ex:testLI>UNKNOWN</ex:testLI>
+      </dfdlInfoset>
+    </infoset>
+  </parserTestCase>
 
   <parserTestCase name="test_bits_01" root="ntp" model="/dfdl-ntp.bin">
 
@@ -54,7 +87,7 @@ Please see the accompanying COPYRIGHT.txt file for terms of use.
 
       <!--Root Dispersion-->
       <documentPart type="byte">
-        00 01 02 90 
+        00 01 02 90
       </documentPart>
 
       <!--Reference ID-->
@@ -81,15 +114,15 @@ Please see the accompanying COPYRIGHT.txt file for terms of use.
       <documentPart type="byte">
         c5 02 04 ec ec 42 ee 92
       </documentPart>
-      
+
     </document>
 
     <infoset>
       <dfdlInfoset>
         <ntp xmlns=""><!-- needs xmlns="" since the default namespace is the TDML namespace -->
-          <LI>3</LI>
+          <LI>UNKNOWN</LI>
           <VN>3</VN>
-          <Mode>1</Mode>
+          <Mode>SYMMETRIC_ACTIVE</Mode>
           <Stratum>0</Stratum>
           <Poll>10</Poll>
           <Precision>250</Precision>
@@ -116,12 +149,12 @@ Please see the accompanying COPYRIGHT.txt file for terms of use.
           </ReceiveTimeStamp>
           <TransmitTimeStamp>
             <seconds>3305243884</seconds>
-            <fraction>-331157870</fraction>
+            <fraction>3963809426</fraction>
           </TransmitTimeStamp>
         </ntp>
       </dfdlInfoset>
     </infoset>
-    
+
   </parserTestCase>
 
   <parserTestCase name="test_all_ff_01" root="ntp" model="/dfdl-ntp.bin">
@@ -136,41 +169,40 @@ ff ff ff ff ff ff ff ff ff ff
     <infoset>
       <dfdlInfoset>
         <ntp xmlns=""><!-- needs xmlns="" since the default namespace is the TDML namespace -->
-          <LI>3</LI>
+          <LI>UNKNOWN</LI>
           <VN>7</VN>
-          <Mode>7</Mode>
+          <Mode>PRIVATE</Mode>
           <Stratum>255</Stratum>
           <Poll>255</Poll>
           <Precision>255</Precision>
           <RootDelay>
             <seconds>65535</seconds>
-            <fraction>-1</fraction>
+            <fraction>65535</fraction>
           </RootDelay>
           <RootDispersion>
             <seconds>65535</seconds>
-            <fraction>-1</fraction>
+            <fraction>65535</fraction>
           </RootDispersion>
-          <ReferenceID>-1</ReferenceID>
+          <ReferenceID>4294967295</ReferenceID>
           <ReferenceTimeStamp>
             <seconds>4294967295</seconds>
-            <fraction>-1</fraction>
+            <fraction>4294967295</fraction>
           </ReferenceTimeStamp>
           <OriginTimeStamp>
             <seconds>4294967295</seconds>
-            <fraction>-1</fraction>
+            <fraction>4294967295</fraction>
           </OriginTimeStamp>
           <ReceiveTimeStamp>
             <seconds>4294967295</seconds>
-            <fraction>-1</fraction>
+            <fraction>4294967295</fraction>
           </ReceiveTimeStamp>
           <TransmitTimeStamp>
             <seconds>4294967295</seconds>
-            <fraction>-1</fraction>
+            <fraction>4294967295</fraction>
           </TransmitTimeStamp>
         </ntp>
       </dfdlInfoset>
     </infoset>
-
   </parserTestCase>
 
   <!--

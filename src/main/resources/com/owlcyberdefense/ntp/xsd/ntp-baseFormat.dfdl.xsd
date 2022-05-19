@@ -21,8 +21,8 @@ Please see the accompanying COPYRIGHT.txt file for terms of use.
                    byteOrder="bigEndian"
                    bitOrder="mostSignificantBitFirst"
                    encoding="ASCII"
-				   lengthKind='implicit'
-				   lengthUnits='bits'
+				           lengthKind='implicit'
+				           lengthUnits='bits'
                    alignmentUnits="bits"
                    alignment="1"
                    occursCountKind="expression"

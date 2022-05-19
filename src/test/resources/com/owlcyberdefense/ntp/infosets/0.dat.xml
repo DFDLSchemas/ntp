@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ntp>
-  <LI>3</LI>
+  <LI>UNKNOWN</LI>
   <VN>3</VN>
-  <Mode>1</Mode>
+  <Mode>SYMMETRIC_ACTIVE</Mode>
   <Stratum>0</Stratum>
   <Poll>10</Poll>
   <Precision>250</Precision>
@@ -29,6 +29,6 @@
   </ReceiveTimeStamp>
   <TransmitTimeStamp>
     <seconds>3305243884</seconds>
-    <fraction>-331157870</fraction>
+    <fraction>3963809426</fraction>
   </TransmitTimeStamp>
 </ntp>
