@@ -4,11 +4,20 @@ This is a DFDL schema for the NTP basic packet format described here:
 
     https://en.wikipedia.org/wiki/Network_Time_Protocol#NTP_packet_header_format
 
-This schema does not implement the optional extension fields past the 48th byte. 
+This schema does not implement the optional extension fields past the 48th byte,
+nor does it implement the NTP Control Messages, which have an entirely different
+format described in Appendix B of RFC 1305.
 
 This schema is written to use the preferred DFDL schema project layout and DFDL schema style
 as of 2025-11-18.
 It can be used as a starting point for other schema projects.
+
+This schema supercedes older NTP schemas from the OpenDFDL github site, with repositories
+named:
+
+- ntp-2022-05-19
+- ntp2
+- ntp1
 
 ## License
 
