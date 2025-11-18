@@ -4,15 +4,10 @@ This is a DFDL schema for the NTP basic packet format described here:
 
     https://en.wikipedia.org/wiki/Network_Time_Protocol#NTP_packet_header_format
 
-This schema does not implement the optional extension fields past the 48th byte,
-nor does it implement the NTP Control Messages, which have an entirely different
-format described in Appendix B of RFC 1305.
-
-This schema is written to use the preferred DFDL schema project layout and DFDL schema style
-as of 2025-11-18.
+This schema is written to use the preferred DFDL schema project layout and DFDL schema style.
 It can be used as a starting point for other schema projects.
 
-This schema supercedes older NTP schemas from the OpenDFDL github site, with repositories
+This schema supersedes older NTP schemas from the OpenDFDL github site, with repositories
 named:
 
 - ntp-2022-05-19
@@ -39,3 +34,14 @@ These can be run using the daffodil CLI using this command line (for example):
 daffodil parse --parser target/dfdl-ntp-1.0.0-daffodil400.bin \
   src/test/resources/com/owlcyberdefense/ntp/data/0.dat 
 ```
+
+# Release Notes
+
+## Version 1.0.0
+
+These aspects of NTP are not implemented:
+- optional extension fields past the 48th byte, including the optional checksum
+- NTP Control Messages ( described in Appendix B of RFC 1305)
+- Kiss-of-Death (KoD) Messages
+- refID as choice of 2 different enums
+- range checks for the `poll` element and other elements with simple range types (per RFC5905)
